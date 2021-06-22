@@ -1,0 +1,16 @@
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\bin\Debug\net5.0\MinhaEstante.exe
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\bin\Debug\net5.0\MinhaEstante.deps.json
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\bin\Debug\net5.0\MinhaEstante.runtimeconfig.json
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\bin\Debug\net5.0\MinhaEstante.runtimeconfig.dev.json
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\bin\Debug\net5.0\MinhaEstante.dll
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\bin\Debug\net5.0\ref\MinhaEstante.dll
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\bin\Debug\net5.0\MinhaEstante.pdb
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\obj\Debug\net5.0\MinhaEstante.csproj.AssemblyReference.cache
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\obj\Debug\net5.0\MinhaEstante.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\obj\Debug\net5.0\MinhaEstante.AssemblyInfoInputs.cache
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\obj\Debug\net5.0\MinhaEstante.AssemblyInfo.cs
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\obj\Debug\net5.0\MinhaEstante.csproj.CoreCompileInputs.cache
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\obj\Debug\net5.0\MinhaEstante.dll
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\obj\Debug\net5.0\ref\MinhaEstante.dll
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\obj\Debug\net5.0\MinhaEstante.pdb
+C:\Users\Pichau\Documents\GitHub\workspace\MinhaEstante\obj\Debug\net5.0\MinhaEstante.genruntimeconfig.cache
