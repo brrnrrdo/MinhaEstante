@@ -13,19 +13,22 @@ namespace MinhaEstante
                 switch (opcaoUsuario)
                 {
                     case "1":
-                        ListarSeries();
+                        ListarLivros();
                         break;
                     case "2":
-                        InserirSerie();
+                        InserirLivro();
                         break;
                     case "3":
-                        AtualizarSerie();
+                        AtualizarLivro();
                         break;
                     case "4":
-                        ExcluirSerie();
+                        EmprestarLivro();
                         break;
                     case "5":
-                        VisualizarSerie();
+                        VisualizarLivro();
+                        break;
+                    case "6":
+                        DevolverLivro();
                         break;
                     case "C":
                         Console.Clear();
@@ -35,19 +38,22 @@ namespace MinhaEstante
                 }
                 opcaoUsuario=ObterOpcaoUsuario();
             }
-            Console.WriteLine("Obrigado por utilizar nossos serviços.");
+            Console.WriteLine("Volte sempre.");
             Console.ReadLine();
         }
         private static string ObterOpcaoUsuario()
         {
             Console.WriteLine();
-            Console.WriteLine("DIO Séries a seu dispôr!!!");
+            Console.WriteLine("Minha Estante");
+            Console.WriteLine();
             Console.WriteLine("Informe a opção desejada:");
-            Console.WriteLine("1 - Listar séries");
-            Console.WriteLine("2 - Inserir nova série");
-            Console.WriteLine("3 - Atualizar série");
-            Console.WriteLine("4 - Excluir série");
-            Console.WriteLine("5 - Visualizar série");
+            Console.WriteLine();
+            Console.WriteLine("1 - Listar livros");
+            Console.WriteLine("2 - Inserir novo livro");
+            Console.WriteLine("3 - Atualizar livro");
+            Console.WriteLine("4 - Emprestar livro");
+            Console.WriteLine("5 - Visualizar livro");
+            Console.WriteLine("6 - Devolver livro");
             Console.WriteLine("C - Limpar tela");
             Console.WriteLine("X - Sair");
             Console.WriteLine();
@@ -57,56 +63,71 @@ namespace MinhaEstante
             return opcaoUsuario;
         }
 
-        private static void ListarSeries()
+        private static void ListarLivros()
         {
-            Console.WriteLine("Listar séries");
+            Console.WriteLine("Listar livros");
+            Console.WriteLine();
 
             var lista=repositorio.Lista();
 
             if(lista.Count==0)
             {
-                Console.WriteLine("Nenhuma série cadastrada.");
+                Console.WriteLine("Nenhum livro cadastrado.");
+                Console.ReadLine();
+                
                 return;
             }
-            foreach(var serie in lista)
+            foreach(var livro in lista)
             {
-                var excluido=serie.retornaExcluido();
+                var emprestado=livro.retornaEmprestado();
                 Console.WriteLine();
-                Console.WriteLine("#ID {0} {1} {2}", serie.retornaId(), serie.retornaTitulo(), (excluido?"*Excluído*":""));
+                Console.WriteLine("#ID {0} {1} {2} {3}", livro.retornaId(), livro.retornaTitulo(), "- "+livro.retornaAutor(), (emprestado?"*Emprestado*":"- Na estante"));
             }
+            Console.ReadLine();
         }
 
-        private static void InserirSerie()
+        private static void InserirLivro()
         {
-            Console.WriteLine("Inserir nova série");
+            Console.WriteLine("Inserir novo livro");
+            Console.WriteLine();
 
             foreach (int i in Enum.GetValues(typeof(Genero)))
             {
                 Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof (Genero), i));
             }
+            Console.WriteLine();
             Console.Write("Digite o Gênero entre as opções acima: ");
             int entradaGenero=int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Digite o Título da Série: ");
+            Console.WriteLine();
+            Console.WriteLine("Digite o Título do Livro: ");
             string entradaTitulo=Console.ReadLine();
 
-            Console.Write("Digite o Ano da Série: ");
+            Console.WriteLine();
+            Console.WriteLine("Digite o Autor do Livro: ");
+            string entradaAutor=Console.ReadLine();
+
+            Console.WriteLine();
+            Console.Write("Digite o Ano do Livro: ");
             int entradaAno = int.Parse(Console.ReadLine());
 
-            Console.Write("Digite a Descrição da Série: ");
+            Console.WriteLine();
+            Console.Write("Digite a Descrição do Livro: ");
             string entradaDescricao=Console.ReadLine();
 
-            Livro novaSerie= new Livro(id: repositorio.ProximoId(),
+            Livro novoLivro= new Livro(id: repositorio.ProximoId(),
                                         genero:(Genero)entradaGenero,
-                                        titulo: entradaTitulo,
+                                        titulo: entradaTitulo, autor: entradaAutor,
                                         ano: entradaAno,
                                         descricao: entradaDescricao);
-            repositorio.Insere(novaSerie);
+            repositorio.Insere(novoLivro);
         }
-        private static void AtualizarSerie()
+        private static void AtualizarLivro()
         {
-            Console.Write("Digite o id da série: ");
-            int indiceSerie=int.Parse(Console.ReadLine());
+            
+            Console.Write("Digite o id do livro: ");
+            Console.WriteLine();
+            int indiceLivro=int.Parse(Console.ReadLine());
 
             foreach(int i in Enum.GetValues(typeof (Genero)))
             {
@@ -115,41 +136,54 @@ namespace MinhaEstante
             Console.Write("Digite o gênero entre as opções acima: ");
             int entradaGenero=int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Digite o Título da Série: ");
+            Console.WriteLine("Digite o Título do livro: ");
             string entradaTitulo=Console.ReadLine();
 
-            Console.Write("Digite o Ano da Série: ");
+            Console.WriteLine("Digite o Autor do livro: ");
+            string entradaAutor=Console.ReadLine();
+
+            Console.Write("Digite o Ano do livro: ");
             int entradaAno = int.Parse(Console.ReadLine());
 
-            Console.Write("Digite a Descrição da Série: ");
+            Console.Write("Digite a Descrição do livro: ");
             string entradaDescricao=Console.ReadLine();
 
-            Livro atualizaSerie= new Livro(id: indiceSerie,
+            Livro atualizaLivro= new Livro(id: indiceLivro,
                                         genero:(Genero)entradaGenero,
-                                        titulo: entradaTitulo,
+                                        titulo: entradaTitulo, autor: entradaAutor,
                                         ano: entradaAno,
                                         descricao: entradaDescricao);
 
             
-            repositorio.Atualiza(indiceSerie,atualizaSerie);
+            repositorio.Atualiza(indiceLivro,atualizaLivro);
         }
 
-        private static void ExcluirSerie()
+        private static void EmprestarLivro()
         {
-            Console.Write("Digite o id da série: ");
-            int indiceSerie=int.Parse(Console.ReadLine());
+            Console.Write("Digite o id do livro: ");
+            int indiceLivro=int.Parse(Console.ReadLine());
 
-            repositorio.Exclui(indiceSerie);
+            repositorio.Empresta(indiceLivro);
+        }
+        private static void DevolverLivro()
+        {
+            Console.WriteLine("Digite o id do livro: ");
+            int indiceLivro=int.Parse(Console.ReadLine());
+
+            repositorio.Devolve(indiceLivro);
         }
 
-        private static void VisualizarSerie()
+        private static void VisualizarLivro()
         {
-            Console.Write("Digite o id da série: ");
-            int indiceSerie=int.Parse(Console.ReadLine());
+            Console.Write("Digite o id do livro: ");
+            int indiceLivro=int.Parse(Console.ReadLine());
 
-            var serie=repositorio.RetornaPorId(indiceSerie);
+            var livro=repositorio.RetornaPorId(indiceLivro);
 
-            Console.WriteLine(serie);
+            Console.WriteLine();
+            Console.WriteLine(livro);
+
+            Console.ReadLine();
 
         }
     }

@@ -6,35 +6,39 @@ namespace MinhaEstante
 {
     public class LivroRepositorio:IFRepositorio<Livro>
     {
-         private List <Livro> listaSerie = new List<Livro>();
+         private List <Livro> listaLivro = new List<Livro>();
         public void Atualiza(int id, Livro objeto)
         {
-            listaSerie[id]=objeto;
+            listaLivro[id]=objeto;
         }
 
-        public void Exclui(int id)
+        public void Empresta(int id)
         {
-            listaSerie[id].Excluir();
+            listaLivro[id].Emprestar();
+        }
+        public void Devolve(int id)
+        {
+            listaLivro[id].Devolver();
         }
 
         public void Insere(Livro objeto)
         {
-            listaSerie.Add(objeto);
+            listaLivro.Add(objeto);
         }
 
         public List<Livro> Lista()
         {
-            return listaSerie;
+            return listaLivro;
         }
 
         public int ProximoId()
         {
-            return listaSerie.Count;
+            return listaLivro.Count;
         }
 
         public Livro RetornaPorId(int id)
         {
-            return listaSerie[id];
+            return listaLivro[id];
         }
     }
     
