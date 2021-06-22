@@ -4,7 +4,7 @@ using MinhaEstante.Interfaces;
 
 namespace MinhaEstante
 {
-    public class LivroRepositorio:IFRepositorio
+    public class LivroRepositorio:IFRepositorio<Livro>
     {
          private List <Livro> listaSerie = new List<Livro>();
         public void Atualiza(int id, Livro objeto)
